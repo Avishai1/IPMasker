@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MaskIPConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "input.log"
+    }
+  }
+}
