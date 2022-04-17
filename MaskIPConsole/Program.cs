@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 try
 {
-
+    if (Environment.GetCommandLineArgs().Length<2)
+    {
+        throw new Exception("Please send an argument");
+    }
     string fileNameInput = Environment.GetCommandLineArgs()[1];
     ValidateFile(fileNameInput);
 
@@ -22,8 +25,7 @@ void ValidateFile(string fileNameInput)
     if (!File.Exists(fileNameInput))
         throw new FileNotFoundException();
     FileInfo fileInfo = new FileInfo(fileNameInput);
-    string fileSuffix = fileInfo.Name.Substring(Math.Max(0, fileInfo.Name.Length - 4));
-    if (fileSuffix != ".log")
+    if (fileInfo.Extension.ToLower()!=".log")
         throw new Exception("The file format is not applicable. Please enter a '*.log' file.");
     if (fileInfo.Length > 5000000)
         throw new Exception("File is larger than 5MB. Please enter a smaller file");
